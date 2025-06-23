@@ -231,8 +231,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Default background color for other brands */
-            background-color: #ede9fe;
+            background-color: white; /* Default white background */
         }
         
         .brand-logo {
@@ -242,15 +241,11 @@
             transition: transform 0.3s;
         }
         
-        /* Specific styles for Neurolux */
-        .neurolux .brand-image {
-            background-color: white; /* White background */
-        }
-        
-        .neurolux .brand-logo {
+        /* Specific styles for Neurolux logo */
+        .neurolux-logo {
             max-width: 50%; /* Smaller width */
             max-height: 80px; /* Smaller height */
-            padding: 10px; /* Add some padding around logo */
+            padding: 15px; /* Add some padding around logo */
         }
         
         .brand-card:hover .brand-logo {
@@ -464,22 +459,6 @@
             font-size: 0.9rem;
         }
         
-        /* Placeholder Logo Styles */
-        .placeholder-logo {
-            width: 200px;
-            height: 120px;
-            background: #e0f2fe;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-align: center;
-            padding: 10px;
-        }
-        
         /* Responsive */
         @media (max-width: 768px) {
             .header-container {
@@ -533,7 +512,7 @@
             }
             
             /* Adjust Neurolux logo size on mobile */
-            .neurolux .brand-logo {
+            .neurolux-logo {
                 max-width: 60%;
                 max-height: 70px;
             }
@@ -582,7 +561,7 @@
                 <!-- Lumeo Smart Lenses -->
                 <div class="brand-card">
                     <div class="brand-image">
-                        <div class="placeholder-logo">LUMEO LOGO</div>
+                        <i class="fas fa-lightbulb" style="font-size: 3rem; color: #3b82f6;"></i>
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">Smart Technology</span>
@@ -592,10 +571,13 @@
                     </div>
                 </div>
                 
-                <!-- Neurolux Lenses - Modified Section -->
-                <div class="brand-card neurolux">
+                <!-- Neurolux Lenses - Updated Section -->
+                <div class="brand-card">
                     <div class="brand-image">
-                        <div class="placeholder-logo">NEUROLUX LOGO</div>
+                        <!-- Neurolux logo added here -->
+                        <img src="https://images.placeholders.dev/?width=250&height=100&text=NEUROLUX&bgColor=%23ffffff&textColor=%23007bff" 
+                             alt="Neurolux Logo" 
+                             class="brand-logo neurolux-logo">
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">Wellness Focused</span>
@@ -607,8 +589,8 @@
                 
                 <!-- OcuSleep Lenses -->
                 <div class="brand-card">
-                    <div class="brand-image" style="background-color: #fce7f3;">
-                        <div class="placeholder-logo">OCUSLEEP LOGO</div>
+                    <div class="brand-image">
+                        <i class="fas fa-moon" style="font-size: 3rem; color: #8b5cf6;"></i>
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">Sleep Solution</span>
@@ -620,8 +602,8 @@
                 
                 <!-- OcuSafe Safety Glasses -->
                 <div class="brand-card">
-                    <div class="brand-image" style="background-color: #dcfce7;">
-                        <div class="placeholder-logo">OCUSAFE LOGO</div>
+                    <div class="brand-image">
+                        <i class="fas fa-shield-alt" style="font-size: 3rem; color: #10b981;"></i>
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">Protection</span>
@@ -633,8 +615,8 @@
                 
                 <!-- 39dollarglasses.com Core -->
                 <div class="brand-card">
-                    <div class="brand-image" style="background-color: #ffedd5;">
-                        <div class="placeholder-logo">39DOLLARGLASSES LOGO</div>
+                    <div class="brand-image">
+                        <i class="fas fa-glasses" style="font-size: 3rem; color: #f59e0b;"></i>
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">Core Brand</span>
@@ -646,8 +628,8 @@
                 
                 <!-- SunVue Sunglasses -->
                 <div class="brand-card">
-                    <div class="brand-image" style="background-color: #cffafe;">
-                        <div class="placeholder-logo">SUNVUE LOGO</div>
+                    <div class="brand-image">
+                        <i class="fas fa-sun" style="font-size: 3rem; color: #f59e0b;"></i>
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">UV Protection</span>
