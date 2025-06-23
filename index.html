@@ -104,6 +104,20 @@
             color: white;
             padding: 100px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 Q50,20 100,0 L100,100 Q50,80 0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
         }
         
         .hero h1 {
@@ -111,6 +125,8 @@
             font-size: 3.5rem;
             margin-bottom: 20px;
             line-height: 1.2;
+            position: relative;
+            z-index: 2;
         }
         
         .hero p {
@@ -118,6 +134,8 @@
             max-width: 700px;
             margin: 0 auto 40px;
             opacity: 0.9;
+            position: relative;
+            z-index: 2;
         }
         
         .btn {
@@ -130,11 +148,15 @@
             font-weight: 600;
             transition: all 0.3s;
             border: 2px solid white;
+            position: relative;
+            z-index: 2;
         }
         
         .btn:hover {
             background-color: transparent;
             color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .btn-outline {
@@ -163,12 +185,25 @@
             font-size: 2.5rem;
             color: var(--secondary);
             margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
         }
         
         .section-title p {
             color: var(--gray);
             max-width: 700px;
-            margin: 0 auto;
+            margin: 20px auto 0;
         }
         
         .brands-grid {
@@ -183,6 +218,7 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
         }
         
         .brand-card:hover {
@@ -192,12 +228,33 @@
         
         .brand-image {
             height: 200px;
-            background-color: var(--light-gray);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: var(--primary);
+            /* Default background color for other brands */
+            background-color: #ede9fe;
+        }
+        
+        .brand-logo {
+            max-width: 70%;
+            max-height: 120px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+        
+        /* Specific styles for Neurolux */
+        .neurolux .brand-image {
+            background-color: white; /* White background */
+        }
+        
+        .neurolux .brand-logo {
+            max-width: 50%; /* Smaller width */
+            max-height: 80px; /* Smaller height */
+            padding: 10px; /* Add some padding around logo */
+        }
+        
+        .brand-card:hover .brand-logo {
+            transform: scale(1.05);
         }
         
         .brand-content {
@@ -268,12 +325,27 @@
             background: linear-gradient(135deg, var(--secondary), var(--dark));
             color: white;
             padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .company-info::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 Q50,20 100,0 L100,100 Q50,80 0,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
         }
         
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
+            position: relative;
+            z-index: 2;
         }
         
         .info-card h3 {
@@ -295,6 +367,9 @@
         
         .stat-item {
             text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
         }
         
         .stat-number {
@@ -378,6 +453,7 @@
         
         .social-links a:hover {
             background-color: var(--primary);
+            transform: translateY(-3px);
         }
         
         .copyright {
@@ -386,6 +462,22 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #94a3b8;
             font-size: 0.9rem;
+        }
+        
+        /* Placeholder Logo Styles */
+        .placeholder-logo {
+            width: 200px;
+            height: 120px;
+            background: #e0f2fe;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 10px;
         }
         
         /* Responsive */
@@ -439,6 +531,12 @@
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+            
+            /* Adjust Neurolux logo size on mobile */
+            .neurolux .brand-logo {
+                max-width: 60%;
+                max-height: 70px;
+            }
         }
     </style>
 </head>
@@ -483,51 +581,51 @@
             <div class="brands-grid">
                 <!-- Lumeo Smart Lenses -->
                 <div class="brand-card">
-                    <div class="brand-image" style="background-color: #e0f2fe;">
-                        <i class="fas fa-lightbulb"></i>
+                    <div class="brand-image">
+                        <div class="placeholder-logo">LUMEO LOGO</div>
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">Smart Technology</span>
                         <h3>Lumeo Smart Lenses</h3>
-                        <p> Prescription lenses engineered for optimal performance with the leading smart glasses. Perfect for active lifestyles.</p>
-                        <a href="#" class="btn" style="backgrounAdvanced lensesd-color: #e0f2fe; color: var(--primary);">Learn More</a>
+                        <p>Advanced lenses that automatically adjust to changing light conditions, providing optimal vision in any environment. Perfect for active lifestyles.</p>
+                        <a href="#" class="btn" style="background-color: #e0f2fe; color: var(--primary);">Learn More</a>
                     </div>
                 </div>
                 
-                <!-- Neurolux Lenses -->
-<div class="brand-card">
-    <div class="brand-image" style="background-color: #ede9fe;">
-        <img src="logos/neurolux-logo.png" alt="Neurolux Lenses Logo" class="brand-logo">
-    </div>
-    <div class="brand-content">
-        <span class="brand-tag">Wellness Focused</span>
-        <h3>Neurolux Lenses</h3>
-        <p>Specialized lenses designed to reduce eye strain and fatigue from digital screens. Features blue light filtering and contrast enhancement.</p>
-        <a href="#" class="btn" style="background-color: #ede9fe; color: var(--primary);">Learn More</a>
-    </div>
-</div>
+                <!-- Neurolux Lenses - Modified Section -->
+                <div class="brand-card neurolux">
+                    <div class="brand-image">
+                        <div class="placeholder-logo">NEUROLUX LOGO</div>
+                    </div>
+                    <div class="brand-content">
+                        <span class="brand-tag">Wellness Focused</span>
+                        <h3>Neurolux Lenses</h3>
+                        <p>Specialized lenses designed to reduce eye strain and fatigue from digital screens. Features blue light filtering and contrast enhancement.</p>
+                        <a href="#" class="btn" style="background-color: #ede9fe; color: var(--primary);">Learn More</a>
+                    </div>
+                </div>
                 
-                <!-- Ocusleep Lenses -->
+                <!-- OcuSleep Lenses -->
                 <div class="brand-card">
                     <div class="brand-image" style="background-color: #fce7f3;">
-                        <i class="fas fa-moon"></i>
+                        <div class="placeholder-logo">OCUSLEEP LOGO</div>
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">Sleep Solution</span>
-                        <h3>Ocusleep Lenses</h3>
+                        <h3>OcuSleep Lenses</h3>
                         <p>Proprietary lens technology that helps regulate circadian rhythm by filtering specific light wavelengths, promoting better sleep quality.</p>
                         <a href="#" class="btn" style="background-color: #fce7f3; color: var(--primary);">Learn More</a>
                     </div>
                 </div>
                 
-                <!-- Ocusafe Safety Glasses -->
+                <!-- OcuSafe Safety Glasses -->
                 <div class="brand-card">
                     <div class="brand-image" style="background-color: #dcfce7;">
-                        <i class="fas fa-shield-alt"></i>
+                        <div class="placeholder-logo">OCUSAFE LOGO</div>
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">Protection</span>
-                        <h3>Ocusafe Safety Glasses</h3>
+                        <h3>OcuSafe Safety Glasses</h3>
                         <p>Industrial-grade protective eyewear that meets ANSI Z87.1 standards. Combines safety with comfort for all-day wear in demanding environments.</p>
                         <a href="#" class="btn" style="background-color: #dcfce7; color: var(--primary);">Learn More</a>
                     </div>
@@ -536,7 +634,7 @@
                 <!-- 39dollarglasses.com Core -->
                 <div class="brand-card">
                     <div class="brand-image" style="background-color: #ffedd5;">
-                        <i class="fas fa-glasses"></i>
+                        <div class="placeholder-logo">39DOLLARGLASSES LOGO</div>
                     </div>
                     <div class="brand-content">
                         <span class="brand-tag">Core Brand</span>
@@ -546,15 +644,15 @@
                     </div>
                 </div>
                 
-                <!-- TrailView Rx Inserts -->
+                <!-- SunVue Sunglasses -->
                 <div class="brand-card">
                     <div class="brand-image" style="background-color: #cffafe;">
-                        <i class="fas fa-sun"></i>
+                        <div class="placeholder-logo">SUNVUE LOGO</div>
                     </div>
                     <div class="brand-content">
-                        <span class="brand-tag">Skiing</span>
-                        <h3>TrailView Rx Inserts</h3>
-                        <p>Premium Rx goggle inserts for Skiing, Snowboarding, and outdoor sports.</p>
+                        <span class="brand-tag">UV Protection</span>
+                        <h3>SunVue Sunglasses</h3>
+                        <p>Premium polarized sunglasses with 100% UV protection. Fashion-forward designs with advanced lens technology for superior visual clarity.</p>
                         <a href="#" class="btn" style="background-color: #cffafe; color: var(--primary);">Learn More</a>
                     </div>
                 </div>
@@ -575,8 +673,8 @@
                     <div class="tech-icon">
                         <i class="fas fa-sync-alt"></i>
                     </div>
-                    <h3>Migraine management</h3>
-                    <p>Neurolux DUO lenses are certified FL-41 lenses, clinicaly proven to reduce migraine and photophobia symptoms </p>
+                    <h3>Adaptive Light Control</h3>
+                    <p>Lumeo lenses automatically adjust tint levels based on ambient light conditions, providing optimal vision in any environment.</p>
                 </div>
                 
                 <div class="tech-card">
@@ -584,7 +682,7 @@
                         <i class="fas fa-wifi"></i>
                     </div>
                     <h3>Blue Spectrum Filtering</h3>
-                    <p>Blue495 technology selectively filters harmful blue light while preserving beneficial wavelengths for reduced eye strain.</p>
+                    <p>Neurolux technology selectively filters harmful blue light while preserving beneficial wavelengths for reduced eye strain.</p>
                 </div>
                 
                 <div class="tech-card">
@@ -592,7 +690,7 @@
                         <i class="fas fa-bed"></i>
                     </div>
                     <h3>Circadian Regulation</h3>
-                    <p>Ocusleep lenses filter specific wavelengths that disrupt melatonin production, promoting natural sleep cycles.</p>
+                    <p>OcuSleep lenses filter specific wavelengths that disrupt melatonin production, promoting natural sleep cycles.</p>
                 </div>
                 
                 <div class="tech-card">
@@ -600,7 +698,7 @@
                         <i class="fas fa-shield-virus"></i>
                     </div>
                     <h3>Impact Protection</h3>
-                    <p>Ocusafe lenses have become the gold standard for industrial and recreational eye safety.</p>
+                    <p>OcuSafe lenses are made from polycarbonate that's 10x more impact-resistant than regular plastic for maximum safety.</p>
                 </div>
             </div>
         </div>
@@ -612,7 +710,7 @@
             <div class="info-grid">
                 <div class="info-card">
                     <h3>About 39DG</h3>
-                    <p>39DG is the parent company of a portfolio of innovative eyewear brands dedicated to making advanced vision solutions accessible to everyone. Founded in 2000, we've grown from a single online store to a family of specialized brands serving diverse vision needs.</p>
+                    <p>39DG is the parent company of a portfolio of innovative eyewear brands dedicated to making advanced vision solutions accessible to everyone. Founded in 2010, we've grown from a single online store to a family of specialized brands serving diverse vision needs.</p>
                     <p>Our mission is to combine optical excellence with technological innovation while maintaining affordable pricing that democratizes access to quality vision care.</p>
                 </div>
                 
@@ -623,8 +721,12 @@
                     
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <div class="stat-number">1 mil+</div>
+                            <div class="stat-number">500K+</div>
                             <div class="stat-label">Customers Served</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Patents Held</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">100%</div>
@@ -656,10 +758,10 @@
                     <ul>
                         <li><a href="#">Lumeo Smart Lenses</a></li>
                         <li><a href="#">Neurolux Lenses</a></li>
-                        <li><a href="#">Ocusleep Lenses</a></li>
-                        <li><a href="#">Ocusafe Safety Glasses</a></li>
+                        <li><a href="#">OcuSleep Lenses</a></li>
+                        <li><a href="#">OcuSafe Safety Glasses</a></li>
                         <li><a href="#">39dollarglasses.com</a></li>
-                        <li><a href="#">UltimateView Sunglasses</a></li>
+                        <li><a href="#">SunVue Sunglasses</a></li>
                     </ul>
                 </div>
                 
@@ -677,16 +779,16 @@
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 60 Plant Ave, Hauppauge, NY 11788</li>
-                        <li><i class="fas fa-phone"></i> (800) 672-6304</li>
-                        <li><i class="fas fa-envelope"></i> support@39dollarglasses.com</li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM EST</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Vision Avenue, New York, NY 10001</li>
+                        <li><i class="fas fa-phone"></i> (800) 393-4353</li>
+                        <li><i class="fas fa-envelope"></i> info@39dg.co</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM EST</li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 39DG. All rights reserved. | Patents Pending</p>
+                <p>&copy; 2023 39DG. All rights reserved. | Patents Pending</p>
             </div>
         </div>
     </footer>
